@@ -1,0 +1,30 @@
+<speak version="1.1" xmlns="http://www.w3.org/2001/10/synthesis"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/2001/10/synthesis
+                http://www.w3.org/TR/speech-synthesis11/synthesis.xsd"
+  xml:lang="nl-NL">
+
+  Hij zag de brief al liggen, <prosody pitch="low">gestoken tussen een stapeltje post</prosody>,
+  onder aan een trappenhuis dat stoffig oogde in de hitte van de
+  hondsdagen.
+
+  <break time="1s" />
+
+  Zo'n misplaatst vrolijke oranje envelop, voorzien van het logo met
+  de zeemeeuw. Onwillekeurig zocht hij steun bij de leuning, als de
+  oude man die hij nog niet was. Zijn benen voelden zoals die keer dat
+  hij op de tienmeterplank had gestaan, na lang delibereren
+  rechtsomkeert had gemaakt en zichzelf een lafaard had gevonden.
+
+  <break time="1s" />
+
+  <emphasis>De etage waar hij woonde was laag</emphasis>, want gebouwd
+  toen alle mensen dwergen waren. Hij had ramen tegen elkaar opengezet
+  en hoorde hoe in een winkelstraat kwartjes en guldens rinkelden op
+  de maat van een draaiorgel.
+
+  <prosody volume="-6db">
+    De verdieping was in tweeën gedeeld middels een muur van Billy's.
+  </prosody>
+
+</speak>

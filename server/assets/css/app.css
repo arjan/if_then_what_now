@@ -1,0 +1,32 @@
+@font-face {
+    font-family: century;
+    src: url("/fonts/Century.otf") format("opentype");
+}
+
+
+body {
+  font-family: century, serif;
+  font-size: 30px;
+  overflow-y: auto;
+}
+
+#start {
+  font-size: 40px;
+  border: 0; background: none;
+}
+
+#words span {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+
+#words span.speed-1 { font-size: 20%; }
+#words span.speed-2 { font-size: 30%; }
+#words span.speed-3 { font-size: 50%; }
+#words span.speed-4 { font-size: 80%; }
+#words span.speed-5 { font-size: 100%; }
+#words span.speed-6 { font-size: 110%; }
+#words span.speed-7 { font-size: 130%; }
+#words span.speed-8 { font-size: 160%; }
+#words span.speed-9 { font-size: 200%; }

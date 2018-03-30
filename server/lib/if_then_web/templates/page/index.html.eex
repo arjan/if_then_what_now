@@ -1,0 +1,6 @@
+<div>
+  <button id="start">Start</button>
+</div>
+
+<div id="words">
+</div>
