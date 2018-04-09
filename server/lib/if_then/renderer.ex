@@ -3,6 +3,8 @@ defmodule IfThen.Renderer do
 
   require Logger
 
+  @ip Application.fetch_env!(:if_then, :unity_ip)
+
   def start_link(id) do
     GenServer.start_link(__MODULE__, [id], name: __MODULE__)
   end
@@ -39,8 +41,6 @@ defmodule IfThen.Renderer do
 
   def handle_call({:input, message}, _from, state) do
     state = handle_input(message, state)
-    IO.inspect Map.take(state, [:speed, :volume, :pitch]), label: "X"
-
     {:reply, :ok, state}
   end
 
@@ -49,7 +49,7 @@ defmodule IfThen.Renderer do
   end
 
   def handle_info(:tick, state = %State{tokens: [ [word, time] | rest]}) do
-    state = %State{state | t: state.t + ((1 + state.speed) * @increment)}
+    state = %State{state | t: state.t + ((0.5 + 2 * state.speed) * @increment)}
     send_udp(state)
     if time < state.t do
       Phoenix.PubSub.broadcast(IfThen.PubSub, "audio", %Phoenix.Socket.Broadcast{event: "word", payload: word_payload(word, state)})
@@ -71,9 +71,11 @@ defmodule IfThen.Renderer do
     %{"timecode" => state.t / 1000,
       "volume" => state.volume,
       "pitch" => state.pitch,
+      "speed" => state.speed,
       "word" => List.first(state.tokens) |> List.first}
+    |> IO.inspect(label: "udp")
     |> Poison.encode!()
-    |> send_direct("192.168.1.90")
+    |> send_direct(@ip)
   end
   def send_direct(message, addr) do
     {:ok, socket} = :gen_udp.open(0, [:binary])
@@ -82,8 +84,14 @@ defmodule IfThen.Renderer do
     :gen_udp.close(socket)
   end
 
+  def send_stop_udp() do
+    %{"timecode" => -1}
+    |> Poison.encode!()
+    |> send_direct(@ip)
+  end
+
   @min_heart_rate 60
-  @max_heart_rate 180
+  @max_heart_rate 90
 
   defp handle_input(message, state) do
     state

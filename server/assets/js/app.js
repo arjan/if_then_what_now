@@ -12,6 +12,7 @@ channel.join()
 
 var words = document.getElementById("words")
 var timecode = document.getElementById("timecode")
+var bottom = document.getElementById("bottom")
 
 function cls(name, value) {
   value = Math.floor(10 * Math.max(0, Math.min(1, value)));
@@ -20,13 +21,19 @@ function cls(name, value) {
 
 channel.on("word", (p) => {
   // normalize
-//  p.speed /= 2;
-//  p.volume /= 2;
+  //  p.speed /= 2;
+  //  p.volume /= 2;
+  document.getElementById("start").style.display = "none";
 
   var span = document.createElement("span")
   span.innerHTML = p.word
-  span.className = cls('volume', p.volume) + cls('pitch', p.pitch) + cls('speed', p.speed)
+  span.className = 'invisible ' + cls('volume', p.volume) + cls('pitch', p.pitch) + cls('speed', p.speed)
   words.appendChild(span)
+  setTimeout(() => {
+    span.classList.toggle('invisible', false)
+    bottom.scrollIntoView({behavior: 'smooth'})
+  }, 100)
+
 })
 
 channel.on("tick", (p) => {
