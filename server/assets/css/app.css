@@ -47,14 +47,3 @@ body {
 #words span.volume-8 { border-width: 16px; }
 #words span.volume-9 { border-width: 20px; }
 #words span.volume-10 { border-width: 20px; }
-
-#words span.pitch-1 { opacity: 0.1; }
-#words span.pitch-2 { opacity: 0.2; }
-#words span.pitch-3 { opacity: 0.3; }
-#words span.pitch-4 { opacity: 0.4; }
-#words span.pitch-5 { opacity: 0.5; }
-#words span.pitch-6 { opacity: 0.6; }
-#words span.pitch-7 { opacity: 0.7; }
-#words span.pitch-8 { opacity: 0.9; }
-#words span.pitch-9 { opacity: 0.9; }
-#words span.pitch-10 { opacity: 1; }

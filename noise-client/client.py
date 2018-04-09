@@ -5,9 +5,11 @@ import socket
 import json
 
 axes = ["speed", "volume", "pitch"]
+#axes = ["speed"]
 
-BASES = [random.randint(0, 1024) for _ in axes]
-REPEAT = [1000, 2000, 1450]
+D = 0.03
+VALUES = [random.random() for _ in axes]
+INCR = [D * (random.random() - 0.5) for _ in axes]
 
 INCR = 0.1
 
@@ -17,16 +19,17 @@ UDP_IP = "127.0.0.1"
 UDP_PORT = 33333
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-
+points = 256
+span = 5.0
 
 while True:
     data = {}
     for i in range(len(axes)):
+        VALUES[i] = max(0, min(1, VALUES[i] + D * (random.random() - 0.5)))
         k = axes[i]
-        data[k] = 1 + 0.5 * pnoise1(x, base=BASES[i], repeat=REPEAT[i])
-        data[k] = 0.2 + 3 * max(0, pnoise1(x, base=BASES[i], repeat=REPEAT[i]))
+        data[k] = VALUES[i]
+        #print(data[k])
     print(data)
-    print(x)
     sock.sendto(json.dumps(data).encode('utf-8'), (UDP_IP, UDP_PORT))
     x = x + INCR
     time.sleep(0.1)

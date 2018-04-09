@@ -20,8 +20,8 @@ function cls(name, value) {
 
 channel.on("word", (p) => {
   // normalize
-  p.speed /= 2;
-  p.volume /= 2;
+//  p.speed /= 2;
+//  p.volume /= 2;
 
   var span = document.createElement("span")
   span.innerHTML = p.word
@@ -36,7 +36,7 @@ channel.on("tick", (p) => {
 })
 
 document.getElementById("start").addEventListener("click", () => {
-  var id = "auke1"
+  var id = "final"
   document.getElementById("start").style.display = "none";
 
   //  var audio = document.createElement("audio")

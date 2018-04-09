@@ -39,6 +39,8 @@ defmodule IfThen.Renderer do
 
   def handle_call({:input, message}, _from, state) do
     state = handle_input(message, state)
+    IO.inspect Map.take(state, [:speed, :volume, :pitch]), label: "X"
+
     {:reply, :ok, state}
   end
 
@@ -47,7 +49,7 @@ defmodule IfThen.Renderer do
   end
 
   def handle_info(:tick, state = %State{tokens: [ [word, time] | rest]}) do
-    state = %State{state | t: state.t + (state.speed * @increment)}
+    state = %State{state | t: state.t + ((1 + state.speed) * @increment)}
     send_udp(state)
     if time < state.t do
       Phoenix.PubSub.broadcast(IfThen.PubSub, "audio", %Phoenix.Socket.Broadcast{event: "word", payload: word_payload(word, state)})
@@ -86,8 +88,8 @@ defmodule IfThen.Renderer do
   defp handle_input(message, state) do
     state
     |> handle_metric(message["speed"], fn(v, state) -> %State{state | speed: v} end)
-    |> handle_metric(message["volume"], fn(v, state) -> %State{state | speed: v} end)
-    |> handle_metric(message["pitch"], fn(v, state) -> %State{state | speed: v} end)
+    |> handle_metric(message["volume"], fn(v, state) -> %State{state | volume: v} end)
+    |> handle_metric(message["pitch"], fn(v, state) -> %State{state | pitch: v} end)
 
     |> handle_metric(message["HeartBPM"], fn(v, state) ->
       s = (v - @min_heart_rate) / (@max_heart_rate - @min_heart_rate)
