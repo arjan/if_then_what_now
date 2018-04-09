@@ -37,6 +37,8 @@ channel.on("tick", (p) => {
 
 document.getElementById("start").addEventListener("click", () => {
   var id = "auke1"
+  document.getElementById("start").style.display = "none";
+
   //  var audio = document.createElement("audio")
   //  audio.oncanplaythrough = function(){
   //    console.log(1)

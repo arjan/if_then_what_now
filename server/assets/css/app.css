@@ -15,18 +15,46 @@ body {
   border: 0; background: none;
 }
 
+#words {
+  line-height: 2;
+}
+
 #words span {
   display: inline-block;
   margin-right: 5px;
+  border-bottom: 1px solid black;
 }
 
 
-#words span.speed-1 { font-size: 20%; }
-#words span.speed-2 { font-size: 30%; }
-#words span.speed-3 { font-size: 50%; }
+#words span.speed-1 { font-size: 30%; }
+#words span.speed-2 { font-size: 40%; }
+#words span.speed-3 { font-size: 60%; }
 #words span.speed-4 { font-size: 80%; }
 #words span.speed-5 { font-size: 100%; }
 #words span.speed-6 { font-size: 110%; }
 #words span.speed-7 { font-size: 130%; }
 #words span.speed-8 { font-size: 160%; }
 #words span.speed-9 { font-size: 200%; }
+#words span.speed-10 { font-size: 220%; }
+
+#words span.volume-1 { border-width: 0; }
+#words span.volume-2 { border-width: 1px; }
+#words span.volume-3 { border-width: 2px; }
+#words span.volume-4 { border-width: 4px; }
+#words span.volume-5 { border-width: 6px; }
+#words span.volume-6 { border-width: 9px; }
+#words span.volume-7 { border-width: 12px; }
+#words span.volume-8 { border-width: 16px; }
+#words span.volume-9 { border-width: 20px; }
+#words span.volume-10 { border-width: 20px; }
+
+#words span.pitch-1 { opacity: 0.1; }
+#words span.pitch-2 { opacity: 0.2; }
+#words span.pitch-3 { opacity: 0.3; }
+#words span.pitch-4 { opacity: 0.4; }
+#words span.pitch-5 { opacity: 0.5; }
+#words span.pitch-6 { opacity: 0.6; }
+#words span.pitch-7 { opacity: 0.7; }
+#words span.pitch-8 { opacity: 0.9; }
+#words span.pitch-9 { opacity: 0.9; }
+#words span.pitch-10 { opacity: 1; }

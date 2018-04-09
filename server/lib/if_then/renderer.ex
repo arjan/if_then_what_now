@@ -85,13 +85,12 @@ defmodule IfThen.Renderer do
 
   defp handle_input(message, state) do
     state
-    |> handle_metric(message["joystick"], fn(v, state) ->
-      Logger.debug "Speed: #{state.speed}"
-      %State{state | speed: 1 + v}
-    end)
+    |> handle_metric(message["speed"], fn(v, state) -> %State{state | speed: v} end)
+    |> handle_metric(message["volume"], fn(v, state) -> %State{state | speed: v} end)
+    |> handle_metric(message["pitch"], fn(v, state) -> %State{state | speed: v} end)
+
     |> handle_metric(message["HeartBPM"], fn(v, state) ->
       s = (v - @min_heart_rate) / (@max_heart_rate - @min_heart_rate)
-      Logger.debug "Volume: #{1 + s}"
       %State{state | volume: 1 + s}
     end)
   end
