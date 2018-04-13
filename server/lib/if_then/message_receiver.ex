@@ -23,7 +23,13 @@ defmodule IfThen.MessageReceiver do
       if Renderer.active? do
         Renderer.input(payload)
       else
-        Calibration.calibrate(payload)
+        for {key, value} <- payload do
+          server = String.to_atom(key)
+          pid = Process.whereis(server)
+          if pid do
+            Calibration.calibrate(pid, value)
+          end
+        end
       end
     end
     :inet.setopts(socket, [{:active, :once}])
