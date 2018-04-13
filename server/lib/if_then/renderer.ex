@@ -84,7 +84,6 @@ defmodule IfThen.Renderer do
       "pitch" => state.pitch,
       "speed" => state.speed,
       "word" => List.first(state.tokens) |> List.first}
-    |> IO.inspect(label: "udp")
     |> Poison.encode!()
     |> send_direct(@ip)
   end
@@ -102,7 +101,7 @@ defmodule IfThen.Renderer do
   end
 
   @heart_max_delta 15
-  @gsr_max_delta 5
+  @gsr_max_delta 150
 
   defp handle_input(message, state) do
     state
@@ -115,10 +114,10 @@ defmodule IfThen.Renderer do
       %State{state | speed: window(v, state.base_values[:HeartBPM], @heart_max_delta)}
     end)
     |> handle_metric(message["GSR1"], fn(v, state) ->
-      %State{state | volume: window(v, state.base_values[:GSR1], @gsr_max_delta)}
+      %State{state | volume: 1 - window(v, state.base_values[:GSR1], @gsr_max_delta)}
     end)
     |> handle_metric(message["GSR2"], fn(v, state) ->
-      %State{state | pitch: window(v, state.base_values[:GSR2], @gsr_max_delta)}
+      %State{state | pitch: 1 - window(v, state.base_values[:GSR2], @gsr_max_delta)}
     end)
   end
 
