@@ -1,6 +1,12 @@
 <div id="start">
   <button>Start</button>
 </div>
+<div id="metrics">
+  <div id="HeartBPM"></div>
+  <div id="GSR1"></div>
+  <div id="GSR2"></div>
+</div>
+
 
 <div id="words">
 </div>

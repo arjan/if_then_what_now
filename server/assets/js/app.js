@@ -19,11 +19,16 @@ function cls(name, value) {
   return name + '-' + value + ' '
 }
 
+channel.on("average", ({ name, average }) => {
+  document.getElementById(name).innerHTML = "" + average;
+})
+
 channel.on("word", (p) => {
   // normalize
   //  p.speed /= 2;
   //  p.volume /= 2;
   document.getElementById("start").style.display = "none";
+  document.getElementById("metrics").style.display = "none";
 
   var span = document.createElement("span")
   span.innerHTML = p.word
@@ -51,7 +56,6 @@ channel.on("tick", (p) => {
 function start() {
   started = true
   var id = "final"
-  document.getElementById("start").style.display = "none";
   channel.push("start", {id: id})
 }
 

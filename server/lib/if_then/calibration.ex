@@ -43,6 +43,7 @@ defmodule IfThen.Calibration do
     samples = [value | state.samples] |> Enum.take(@window)
     average = Enum.sum(samples) / @window
     Logger.debug "#{state.name} - #{average}"
+    Phoenix.PubSub.broadcast(IfThen.PubSub, "audio", %Phoenix.Socket.Broadcast{event: "average", payload: %{name: state.name, average: average}})
     {:reply, :ok, %State{state | samples: samples, average: average}}
   end
   def handle_call({:calibrate, value}, _from, state) do
