@@ -3,6 +3,9 @@
     src: url("/fonts/Century.otf") format("opentype");
 }
 
+html, body {
+  min-height: 100%;
+}
 
 body {
   font-family: century, serif;
@@ -12,8 +15,18 @@ body {
 }
 
 #start {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  text-align: center;
+}
+#start button {
+  cursor: pointer;
   font-size: 40px;
   border: 0; background: none;
+  padding: 10px 30px;
+  border: 2px solid black;
 }
 
 #words {

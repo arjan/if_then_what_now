@@ -1,5 +1,5 @@
-<div>
-  <button id="start">Start</button>
+<div id="start">
+  <button>Start</button>
 </div>
 
 <div id="words">

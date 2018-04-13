@@ -33,10 +33,16 @@ channel.on("word", (p) => {
     span.classList.toggle('invisible', false)
     bottom.scrollIntoView({behavior: 'smooth'})
   }, 100)
-
 })
 
-channel.on("tick", (p) => {
+channel.on("done", (p) => {
+  setTimeout(function() {
+    window.print();
+    alert("ok")
+  }, 5000)
+})
+
+  channel.on("tick", (p) => {
   console.log(p)
 
   timecode.innerHTML = p.timecode

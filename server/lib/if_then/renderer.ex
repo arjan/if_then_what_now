@@ -45,6 +45,9 @@ defmodule IfThen.Renderer do
   end
 
   def handle_info(:tick, state = %State{tokens: []}) do
+    state = %State{state | t: -1000}
+    send_udp(state) # negative time code == stop
+    Phoenix.PubSub.broadcast(IfThen.PubSub, "audio", %Phoenix.Socket.Broadcast{event: "done"})
     {:stop, :normal, state}
   end
 

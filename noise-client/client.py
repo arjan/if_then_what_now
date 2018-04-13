@@ -1,4 +1,3 @@
-from noise import pnoise1
 import random
 import time
 import socket
