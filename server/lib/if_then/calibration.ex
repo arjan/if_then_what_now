@@ -16,7 +16,7 @@ defmodule IfThen.Calibration do
   end
 
   def handle_call({:calibrate, values}, _from, state) do
-    IO.inspect values, label: "calibrate"
+#    IO.inspect values, label: "calibrate"
     {:reply, :ok, values}
   end
 

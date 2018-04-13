@@ -2,8 +2,8 @@ import { Socket } from "phoenix"
 
 let socket = new Socket("/socket", {})
 socket.connect()
-console.log(socket)
 
+let started = false
 
 let channel = socket.channel("audio", {})
 channel.join()
@@ -38,25 +38,30 @@ channel.on("word", (p) => {
 channel.on("done", (p) => {
   setTimeout(function() {
     window.print();
-    alert("ok")
+    document.location.reload()
   }, 5000)
 })
 
-  channel.on("tick", (p) => {
+channel.on("tick", (p) => {
   console.log(p)
 
   timecode.innerHTML = p.timecode
 })
 
-document.getElementById("start").addEventListener("click", () => {
+function start() {
+  started = true
   var id = "final"
   document.getElementById("start").style.display = "none";
-
-  //  var audio = document.createElement("audio")
-  //  audio.oncanplaythrough = function(){
-  //    console.log(1)
-  //    audio.play();
   channel.push("start", {id: id})
-  //}
-  //  audio.src = "/audio/" + id + ".wav"
+}
+
+document.getElementById("start").addEventListener("click", start)
+document.addEventListener("keyup", (e) => {
+  if (e.keyCode == 32 && !started) {
+    start()
+  }
 })
+
+if (document.location.hash) {
+  document.body.classList.toggle(document.location.hash.substr(1), true)
+}
